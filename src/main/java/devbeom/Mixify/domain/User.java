@@ -36,9 +36,10 @@ public class User {
     // Comment 의 경우 비즈니스 로직에서 Comment List 를 가져와야 한다고 판단되면 추가로 개발
 
     @Builder
-    public User(Long id, String user_id, String user_pw) {
+    public User(Long id, String userId, String userPw, float userStar) {
         this.id = id;
-        this.user_id = user_id;
-        this.user_pw = user_pw;
+        this.userId = userId;
+        this.userPw = userPw;
+        this.userStar = userStar;
     }
 }
