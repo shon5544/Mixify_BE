@@ -21,6 +21,9 @@ public class User {
     private String user_id;
     private String user_pw;
 
+    @Column(name = "user_star")
+    private float userStar;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private final List<Scrap> scrapsList = new ArrayList<>();
 
