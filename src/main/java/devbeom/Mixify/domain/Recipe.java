@@ -2,6 +2,7 @@ package devbeom.Mixify.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -52,4 +53,27 @@ public class Recipe {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private NewRecipes newRecipes;
+
+    @Builder
+    public Recipe(String title,
+                  int likeCnt,
+                  int scrapCnt,
+                  int commentCnt,
+                  String thumbnail,
+                  float star,
+                  User user,
+                  Scrap scrap,
+                  HotRecipes hotRecipes,
+                  NewRecipes newRecipes) {
+        this.title = title;
+        this.likeCnt = likeCnt;
+        this.scrapCnt = scrapCnt;
+        this.commentCnt = commentCnt;
+        this.thumbnail = thumbnail;
+        this.star = star;
+        this.user = user;
+        this.scrap = scrap;
+        this.hotRecipes = hotRecipes;
+        this.newRecipes = newRecipes;
+    }
 }
