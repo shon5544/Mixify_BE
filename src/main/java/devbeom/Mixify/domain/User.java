@@ -18,8 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String user_id;
-    private String user_pw;
+    @Column(name = "user_id")
+    private String userId;
+
+    @Column(name = "user_pw")
+    private String userPw;
 
     @Column(name = "user_star")
     private float userStar;
