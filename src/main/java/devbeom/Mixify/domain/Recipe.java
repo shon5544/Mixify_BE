@@ -43,15 +43,19 @@ public class Recipe {
     private final List<Ingredient> ingredientList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "scrap_id")
     private Scrap scrap;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hot_recipes_id")
     private HotRecipes hotRecipes;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "new_recipes_id")
     private NewRecipes newRecipes;
 
     @Builder

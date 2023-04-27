@@ -21,6 +21,7 @@ public class Step {
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_name")
     private Recipe recipe;
 
     @Builder
