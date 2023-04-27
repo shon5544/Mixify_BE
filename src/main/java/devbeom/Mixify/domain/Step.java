@@ -15,18 +15,19 @@ public class Step {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int index;
+    @Column(name = "step_index")
+    private int stepIndex;
 
     private String content;
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_name")
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @Builder
-    public Step(int index, String content, String image, Recipe recipe) {
-        this.index = index;
+    public Step(int stepIndex, String content, String image, Recipe recipe) {
+        this.stepIndex = stepIndex;
         this.content = content;
         this.image = image;
         this.recipe = recipe;
