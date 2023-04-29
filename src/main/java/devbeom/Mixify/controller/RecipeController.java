@@ -16,5 +16,5 @@ public class RecipeController {
     private final RecipeService recipeService;
 
     @PostMapping("/create/recipe")
-    public void createRecipe(@RequestBody ){}
+    public void createRecipe(){}
 }
