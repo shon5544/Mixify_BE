@@ -2,6 +2,7 @@ package devbeom.Mixify.service;
 
 import devbeom.Mixify.domain.Ingredient;
 import devbeom.Mixify.domain.Recipe;
+import devbeom.Mixify.dto.service.ingredient.IngredientServiceParentDTO;
 import devbeom.Mixify.repository.IngredientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
     @Transactional
-    public void createIngredient(Ingredient ingredient) {
+    public void createIngredient(IngredientServiceParentDTO ingredientServiceParentDTO) {
+        Ingredient ingredient = ingredientServiceParentDTO.toEntity();
         ingredientRepository.save(ingredient);
     }
 
