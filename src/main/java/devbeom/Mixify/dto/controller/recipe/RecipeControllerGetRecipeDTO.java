@@ -5,8 +5,6 @@ import devbeom.Mixify.dto.controller.comment.CommentControllerForRecipeDTO;
 import devbeom.Mixify.dto.controller.comment.CommentControllerParentDTO;
 import devbeom.Mixify.dto.controller.ingredient.IngredientControllerForRecipeDTO;
 import devbeom.Mixify.dto.controller.ingredient.IngredientControllerParentDTO;
-import devbeom.Mixify.dto.controller.scrap.ScrapControllerForRecipeDTO;
-import devbeom.Mixify.dto.controller.scrap.ScrapControllerParentDTO;
 import devbeom.Mixify.dto.controller.step.StepControllerForRecipeDTO;
 import devbeom.Mixify.dto.controller.step.StepControllerParentDTO;
 import devbeom.Mixify.dto.controller.user.UserControllerForRecipeDTO;
