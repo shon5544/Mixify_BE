@@ -7,7 +7,7 @@ public abstract class UserServiceParentDTO {
 //    private String userPw;
 //    private float userStar;
 
-    abstract public User toEntity();
+    public abstract User toEntity();
 //    {
 //        return User.builder()
 //                .userId(this.userId)

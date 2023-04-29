@@ -8,5 +8,5 @@ public abstract class CommentServiceParentDTO {
 //    private float comment_star;
 //    private UserControllerParentDTO user;
 
-    abstract public Comment toEntity();
+    public abstract Comment toEntity();
 }
