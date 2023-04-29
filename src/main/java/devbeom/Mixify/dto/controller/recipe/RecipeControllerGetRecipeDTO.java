@@ -10,11 +10,13 @@ import devbeom.Mixify.dto.controller.step.StepControllerParentDTO;
 import devbeom.Mixify.dto.controller.user.UserControllerForRecipeDTO;
 import devbeom.Mixify.dto.controller.user.UserControllerParentDTO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@NoArgsConstructor
 public class RecipeControllerGetRecipeDTO extends RecipeControllerParentDTO{
     private String title;
     private String thumbnail;
@@ -30,6 +32,11 @@ public class RecipeControllerGetRecipeDTO extends RecipeControllerParentDTO{
     private List<IngredientControllerParentDTO> ingredientList;
 
     private final UserControllerParentDTO user = new UserControllerForRecipeDTO();
+
+    // 생성자로 바로 설정이 가능한 경우 생성자로도 DTO 초기화를 가능하게끔 했다.
+    public RecipeControllerGetRecipeDTO(Recipe recipe) {
+        this.toDTO(recipe);
+    }
 
     public void toDTO(Recipe recipe) {
         this.title = recipe.getTitle();
