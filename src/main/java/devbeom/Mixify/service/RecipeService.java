@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
 
-    public void JoinRecipe(Recipe recipe) {
+    public void createRecipe(Recipe recipe) {
         recipeRepository.save(recipe);
     }
 
