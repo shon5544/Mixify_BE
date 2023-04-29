@@ -24,6 +24,8 @@ public class User {
     @Column(name = "user_pw")
     private String userPw;
 
+    private String username;
+
     @Column(name = "user_star")
     private float userStar;
 
@@ -36,9 +38,10 @@ public class User {
     // Comment 의 경우 비즈니스 로직에서 Comment List 를 가져와야 한다고 판단되면 추가로 개발
 
     @Builder
-    public User(String userId, String userPw, float userStar) {
+    public User(String userId, String userPw, String username, float userStar) {
         this.userId = userId;
         this.userPw = userPw;
+        this.username = username;
         this.userStar = userStar;
     }
 }
