@@ -46,9 +46,8 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "scrap_id")
-    private Scrap scrap;
+    @OneToMany(mappedBy = "recipe")
+    private final List<Scrap> scrapList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hot_recipes_id")
@@ -66,7 +65,6 @@ public class Recipe {
                   String thumbnail,
                   float star,
                   User user,
-                  Scrap scrap,
                   HotRecipes hotRecipes,
                   NewRecipes newRecipes) {
         this.title = title;
@@ -76,7 +74,6 @@ public class Recipe {
         this.thumbnail = thumbnail;
         this.star = star;
         this.user = user;
-        this.scrap = scrap;
         this.hotRecipes = hotRecipes;
         this.newRecipes = newRecipes;
     }

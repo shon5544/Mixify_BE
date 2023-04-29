@@ -22,11 +22,13 @@ public class Scrap {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "scrap")
-    private final List<Recipe> recipeList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
 
     @Builder
-    public Scrap(User user) {
+    public Scrap(User user, Recipe recipe) {
         this.user = user;
+        this.recipe = recipe;
     }
 }
