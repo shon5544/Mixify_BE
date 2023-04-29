@@ -1,6 +1,7 @@
 package devbeom.Mixify.service;
 
 import devbeom.Mixify.domain.Recipe;
+import devbeom.Mixify.dto.controller.recipe.RecipeControllerGetRecipeDTO;
 import devbeom.Mixify.dto.controller.recipe.RecipeControllerParentDTO;
 import devbeom.Mixify.dto.service.recipe.RecipeServiceParentDTO;
 import devbeom.Mixify.repository.RecipeRepository;
@@ -21,11 +22,11 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-    // 의존성 문제로 인하여 추후 개발
-//    public RecipeControllerParentDTO getRecipeById(Long recipeId) {
-//        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
-//
-//        RecipeControllerParentDTO recipeControllerParentDTO;
-//        return recipeControllerParentDTO;
-//    }
+    public RecipeControllerParentDTO getRecipeById(Long recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
+
+        RecipeControllerParentDTO recipeControllerParentDTO = new RecipeControllerGetRecipeDTO();
+        recipeControllerParentDTO.toDTO(recipe);
+        return recipeControllerParentDTO;
+    }
 }
