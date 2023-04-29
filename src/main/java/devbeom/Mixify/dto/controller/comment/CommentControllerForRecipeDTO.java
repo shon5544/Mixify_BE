@@ -10,14 +10,13 @@ public class CommentControllerForRecipeDTO extends CommentControllerParentDTO{
     private String content;
 
     private float commentStar;
-    private UserControllerParentDTO user;
+    private UserControllerForCommentDTO user;
 
     public void toDTO(Comment comment) {
         this.content = comment.getContent();
         this.commentStar = comment.getComment_star();
 
-        UserControllerForCommentDTO userControllerForCommentDTO = new UserControllerForCommentDTO();
-        userControllerForCommentDTO.toDTO(comment.getUser());
-        this.user = userControllerForCommentDTO;
+        user = new UserControllerForCommentDTO();
+        user.toDTO(comment.getUser());
     }
 }
