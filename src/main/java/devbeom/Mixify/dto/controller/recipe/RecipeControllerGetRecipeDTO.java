@@ -30,7 +30,6 @@ public class RecipeControllerGetRecipeDTO extends RecipeControllerParentDTO{
     private List<StepControllerParentDTO> stepList;
     private List<CommentControllerParentDTO> commentList;
     private List<IngredientControllerParentDTO> ingredientList;
-    private List<ScrapControllerParentDTO> scrapList;
 
     private final UserControllerParentDTO user = new UserControllerForRecipeDTO();
 
@@ -63,14 +62,6 @@ public class RecipeControllerGetRecipeDTO extends RecipeControllerParentDTO{
                 .map(ingredient -> {
                     ingredientControllerParentDTO.toDTO(ingredient);
                     return ingredientControllerParentDTO;
-                })
-                .collect(Collectors.toList());
-
-        ScrapControllerParentDTO scrapControllerParentDTO = new ScrapControllerForRecipeDTO();
-        this.scrapList = recipe.getScrapList().stream()
-                .map(scrap -> {
-                    scrapControllerParentDTO.toDTO(scrap);
-                    return scrapControllerParentDTO;
                 })
                 .collect(Collectors.toList());
 
