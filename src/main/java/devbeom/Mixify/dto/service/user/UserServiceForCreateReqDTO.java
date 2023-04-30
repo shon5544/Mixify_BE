@@ -6,4 +6,4 @@ import lombok.Getter;
 public class UserServiceForCreateReqDTO {
 //    private String username;
 //    private String
-}
+};
