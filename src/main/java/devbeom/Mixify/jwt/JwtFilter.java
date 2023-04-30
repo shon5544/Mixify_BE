@@ -15,11 +15,14 @@ import org.springframework.web.filter.GenericFilterBean;
 import java.io.IOException;
 
 @Slf4j
-@RequiredArgsConstructor
 public class JwtFilter extends GenericFilterBean {
     public static final String AUTHORIZATION_HEADER = "Authorization";
 
     private final TokenProvider tokenProvider;
+
+    public JwtFilter(TokenProvider tokenProvider) {
+        this.tokenProvider = tokenProvider;
+    }
 
     // JWT 토큰의 인증정보를 SecurityContext 에 저장하는 역할 수행
     @Override
