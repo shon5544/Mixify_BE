@@ -1,10 +1,7 @@
 package devbeom.Mixify.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +33,10 @@ public class User {
     private final List<Recipe> recipeList = new ArrayList<>();
 
     // Comment 의 경우 비즈니스 로직에서 Comment List 를 가져와야 한다고 판단되면 추가로 개발
+
+    // 딱히 양방향일 필요는 없을 것 같음.
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<UserAuthority> authorities;
 
     @Builder
     public User(String userId, String userPw, String username, float userStar) {
