@@ -5,5 +5,4 @@ import devbeom.Mixify.dto.controller.recipe.RecipeControllerParentDTO;
 
 public abstract class RecipeServiceParentDTO {
     public abstract Recipe toEntity();
-    public abstract RecipeControllerParentDTO toControllerDTO(Recipe recipe);
 }
