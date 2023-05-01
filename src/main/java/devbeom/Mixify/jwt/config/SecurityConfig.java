@@ -6,7 +6,6 @@ import devbeom.Mixify.jwt.JwtSecurityConfig;
 import devbeom.Mixify.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -63,8 +62,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //해당 url에 대한 요청은 인증없이 접근을 허용하겠다는 뜻
-                .requestMatchers("/get/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/api/signup", "/auth/authenticate").permitAll()
 
                 //그 외의 나머지 request 들은 모두 인증되어야 한다는 의미.
                 .anyRequest().authenticated()

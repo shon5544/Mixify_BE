@@ -25,6 +25,8 @@ public class RecipeService {
     public RecipeControllerParentDTO getRecipeById(Long recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
 
+        RecipeControllerParentDTO recipeControllerParentDTO = new RecipeControllerGetRecipeDTO(recipe);
+
         return new RecipeControllerGetRecipeDTO(recipe);
     }
 }
