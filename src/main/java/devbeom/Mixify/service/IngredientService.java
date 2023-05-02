@@ -15,7 +15,10 @@ import java.util.List;
 public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
-
+    @Transactional
+    public void createIngredients(List<Ingredient> ingredientList) {
+        ingredientRepository.saveAll(ingredientList);
+    }
     public List<Ingredient> getIngredientListByRecipe(Recipe recipe) {
         return ingredientRepository.findAllByRecipe(recipe);
     }
