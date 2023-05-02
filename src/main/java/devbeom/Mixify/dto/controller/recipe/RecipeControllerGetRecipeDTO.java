@@ -11,24 +11,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
 @NoArgsConstructor
 public class RecipeControllerGetRecipeDTO extends RecipeControllerParentDTO{
-    private String title;
-    private String thumbnail;
-
-    private int likeCnt;
-    private int scrapCnt;
-    private int commentCnt;
-
-    private float star;
-
-    private List<StepControllerForRecipeDTO> stepList;
-    private List<CommentControllerForRecipeDTO> commentList;
-    private List<IngredientControllerForRecipeDTO> ingredientList;
-
-    private final UserControllerForRecipeDTO user = new UserControllerForRecipeDTO();
-
     // 생성자로 바로 설정이 가능한 경우 생성자로도 DTO 초기화를 가능하게끔 했다.
     public RecipeControllerGetRecipeDTO(Recipe recipe) {
         this.toDTO(recipe);
