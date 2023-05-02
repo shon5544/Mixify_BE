@@ -48,7 +48,8 @@ public class User {
     private Set<Authority> authorities;
 
     @Builder
-    public User(String userId, String userPw, String username, float userStar, boolean activated, Set<Authority> authorities) {
+    public User(Long id, String userId, String userPw, String username, float userStar, boolean activated, Set<Authority> authorities) {
+        this.id = id;
         this.userId = userId;
         this.userPw = userPw;
         this.username = username;
