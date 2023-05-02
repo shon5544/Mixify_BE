@@ -49,13 +49,6 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private final List<Scrap> scrapList = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hot_recipes_id")
-    private HotRecipes hotRecipes;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "new_recipes_id")
-    private NewRecipes newRecipes;
 
     @Builder
     public Recipe(String title,
@@ -64,9 +57,7 @@ public class Recipe {
                   int commentCnt,
                   String thumbnail,
                   float star,
-                  User user,
-                  HotRecipes hotRecipes,
-                  NewRecipes newRecipes) {
+                  User user) {
         this.title = title;
         this.likeCnt = likeCnt;
         this.scrapCnt = scrapCnt;
@@ -74,7 +65,5 @@ public class Recipe {
         this.thumbnail = thumbnail;
         this.star = star;
         this.user = user;
-        this.hotRecipes = hotRecipes;
-        this.newRecipes = newRecipes;
     }
 }
