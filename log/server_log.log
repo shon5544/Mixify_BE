@@ -33391,3 +33391,73 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'mixify.user_authority' doesn
         (name, quantity, recipe_id) 
     values
         (?, ?, ?)
+2023-05-02T20:33:46.673+09:00  INFO 16064 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-02T20:33:46.674+09:00  INFO 16064 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-05-02T20:33:46.676+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table comment 
+       drop 
+       foreign key FKe5i1rxybcm40jcn98fj1jmvit
+2023-05-02T20:33:46.716+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table comment 
+       drop 
+       foreign key FKqm52p1v3o13hy268he0wcngr5
+2023-05-02T20:33:46.735+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table ingredient 
+       drop 
+       foreign key FKj0s4ywmqqqw4h5iommigh5yja
+2023-05-02T20:33:46.759+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table recipe 
+       drop 
+       foreign key FK5mx01yw4j003wisa2aqmwir6l
+2023-05-02T20:33:46.798+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table scrap 
+       drop 
+       foreign key FK7wi9vthkcfn2sqm830e7lrxja
+2023-05-02T20:33:46.820+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table scrap 
+       drop 
+       foreign key FK6jcivlvmiwrx9hd1d7h2tkije
+2023-05-02T20:33:46.838+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table step 
+       drop 
+       foreign key FKpwpbn24pd57073jm669d7dwt9
+2023-05-02T20:33:46.860+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    alter table user_authority 
+       drop 
+       foreign key FK6ktglpl5mjosa283rvken2py5
+2023-05-02T20:33:46.878+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists authority
+2023-05-02T20:33:46.894+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists comment
+2023-05-02T20:33:46.909+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists ingredient
+2023-05-02T20:33:46.916+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists recipe
+2023-05-02T20:33:46.924+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists scrap
+2023-05-02T20:33:46.932+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists step
+2023-05-02T20:33:46.941+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists user_authority
+2023-05-02T20:33:46.948+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    
+    drop table if exists users
+2023-05-02T20:33:46.955+09:00 TRACE 16064 --- [SpringApplicationShutdownHook] o.h.type.spi.TypeConfiguration$Scope     : Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@1a3c4b3e] for TypeConfiguration
+2023-05-02T20:33:46.956+09:00 DEBUG 16064 --- [SpringApplicationShutdownHook] o.h.type.spi.TypeConfiguration$Scope     : Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@548edd20] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@1a3c4b3e]
+2023-05-02T20:33:46.958+09:00  INFO 16064 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-02T20:33:46.966+09:00  INFO 16064 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
