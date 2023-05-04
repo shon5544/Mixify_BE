@@ -51,9 +51,6 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "recipe")
-    private final List<Scrap> scrapList = new ArrayList<>();
-
 
     @Builder
     public Recipe(String title,
