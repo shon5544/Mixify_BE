@@ -1,7 +1,9 @@
 package devbeom.Mixify.service;
 
 import devbeom.Mixify.domain.Recipe;
+import devbeom.Mixify.dto.response.recipe.RecipeGeneralResDTO;
 import devbeom.Mixify.repository.RecipeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,5 +17,11 @@ public class RecipeService {
     @Transactional
     public Recipe createRecipe(Recipe recipe) {
         return recipeRepository.save(recipe);
+    }
+
+    public RecipeGeneralResDTO getRecipe(Long recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
+
+        return new RecipeGeneralResDTO(recipe);
     }
 }
