@@ -19,7 +19,7 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public RecipeGeneralResDTO getRecipe(Long recipeId) {
+    public RecipeGeneralResDTO getRecipeById(Long recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
 
         return new RecipeGeneralResDTO(recipe);
