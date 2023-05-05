@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 public class RecipeGeneralResDTO {
-    private final Long id;
+    private final Long recipeId;
 
     private final String title;
     private final String thumbnail;
@@ -30,7 +30,7 @@ public class RecipeGeneralResDTO {
     private final UserGeneralResDTO user;
 
     public RecipeGeneralResDTO(Recipe recipe) {
-        id = recipe.getId();
+        recipeId = recipe.getId();
         title = recipe.getTitle();
         thumbnail = recipe.getThumbnail();
         likeCnt = recipe.getLikeCnt();
