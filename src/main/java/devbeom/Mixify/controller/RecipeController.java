@@ -13,6 +13,7 @@ import devbeom.Mixify.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,18 +30,20 @@ public class RecipeController {
     private final IngredientService ingredientService;
 
     @GetMapping("/get/recipe/{recipeId}")
-    public RecipeGeneralResDTO getRecipe(@PathVariable Long recipeId) {
-        return recipeService.getRecipe(recipeId);
+    public ResponseEntity<RecipeGeneralResDTO> getRecipe(@PathVariable Long recipeId) {
+
+        return ResponseEntity.ok()
+                        .body(recipeService.getRecipeResById(recipeId));
+
     }
 
     @PostMapping("/create/recipe")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public void createRecipe(@Valid @RequestBody RecipeGeneralReqDTO recipeGeneralReqDTO) {
+    public ResponseEntity<Void> createRecipe(@Valid @RequestBody RecipeGeneralReqDTO recipeGeneralReqDTO) {
         Long userId = recipeGeneralReqDTO.getUserId();
         User user = userService.getUserById(userId);
 
-        Recipe recipe = recipeGeneralReqDTO.toEntity(user);
-        recipeService.createRecipe(recipe);
+        Recipe recipe = recipeService.createRecipe(recipeGeneralReqDTO.toEntity(user));
 
         List<Step> steps = recipeGeneralReqDTO.getSteps().stream()
                 .map(stepGeneralReqDTO -> stepGeneralReqDTO.toEntity(recipe))
@@ -53,8 +56,6 @@ public class RecipeController {
         stepService.createSteps(steps);
         ingredientService.createIngredients(ingredients);
 
-
-
-
+        return ResponseEntity.ok().build();
     }
 }
