@@ -5,14 +5,14 @@ import lombok.Getter;
 
 @Getter
 public class UserGeneralResDTO {
-    private final Long id;
+    private final Long userPk;
 
     private final String username;
 
     private final float userStar;
 
     public UserGeneralResDTO(User user) {
-        id = user.getId();
+        userPk = user.getId();
         username = user.getUsername();
         userStar = user.getUserStar();
     }
