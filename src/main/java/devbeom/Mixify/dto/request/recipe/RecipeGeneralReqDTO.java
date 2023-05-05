@@ -5,6 +5,7 @@ import devbeom.Mixify.domain.User;
 import devbeom.Mixify.dto.request.ingredient.IngredientGeneralReqDTO;
 import devbeom.Mixify.dto.request.step.StepGeneralReqDTO;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class RecipeGeneralReqDTO {
 
     // 아무래도 해당 클래스의 toEntity 메서드에 의존하는 것보단 직접 User를 가져와서 꽂아주는 게 제일 안전할 듯.
 //    private UserGeneralReqDTO user;
+    @NotNull
     private Long userId;
 
     // 프론트 개발 편의성을 위해 연관관계 주인을 여기서 받음
