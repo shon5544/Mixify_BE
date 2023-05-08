@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class RecipeGeneralResDTO {
     private final Long recipeId;
 
+    private final UserGeneralResDTO user;
+
     private final String title;
     private final String thumbnail;
 
@@ -26,8 +28,6 @@ public class RecipeGeneralResDTO {
     private final List<StepGeneralResDTO> steps;
     private final List<CommentGeneralResDTO> comments;
     private final List<IngredientGeneralResDTO> ingredients;
-
-    private final UserGeneralResDTO user;
 
     public RecipeGeneralResDTO(Recipe recipe) {
         recipeId = recipe.getId();
