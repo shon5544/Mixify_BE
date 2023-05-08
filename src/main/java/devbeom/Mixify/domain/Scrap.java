@@ -6,8 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,9 +25,14 @@ public class Scrap {
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
+    @Column(name = "scrapped_date")
+    private LocalDateTime scrappedDate;
+
     @Builder
     public Scrap(User user, Recipe recipe) {
         this.user = user;
         this.recipe = recipe;
+
+        this.scrappedDate = LocalDateTime.now();
     }
 }

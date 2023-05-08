@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,9 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "posted_date")
+    private LocalDateTime postedDate;
+
 
     @Builder
     public Recipe(String title,
@@ -67,5 +71,6 @@ public class Recipe {
         this.thumbnail = thumbnail;
         this.star = star;
         this.user = user;
+        this.postedDate = LocalDateTime.now();
     }
 }
