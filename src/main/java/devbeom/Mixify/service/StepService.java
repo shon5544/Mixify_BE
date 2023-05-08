@@ -17,7 +17,7 @@ public class StepService {
     private final StepRepository stepRepository;
 
     @Transactional
-    public void createStep(List<Step> stepList) {
+    public void createSteps(List<Step> stepList) {
         stepRepository.saveAll(stepList);
     }
 

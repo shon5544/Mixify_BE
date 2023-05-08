@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 초기 생성 시 필요
     private String title;
 
     @Column(name = "like_cnt")
@@ -29,33 +31,30 @@ public class Recipe {
     @Column(name = "comment_cnt")
     private int commentCnt;
 
+    // 초기 생성 시 필요
     private String thumbnail;
 
     private float star;
 
+    // 초기 생성 시 필요: Entity 에 직접 추가해야한 다는 것은 아님
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private final List<Step> steps = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.REMOVE)
     private final List<Comment> commentList = new ArrayList<>();
 
+    // 초기 생성 시 필요: Entity 에 직접 추가해야한 다는 것은 아님
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private final List<Ingredient> ingredientList = new ArrayList<>();
 
+    // 초기 생성 시 필요
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "recipe")
-    private final List<Scrap> scrapList = new ArrayList<>();
+    @Column(name = "posted_date")
+    private LocalDateTime postedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hot_recipes_id")
-    private HotRecipes hotRecipes;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "new_recipes_id")
-    private NewRecipes newRecipes;
 
     @Builder
     public Recipe(String title,
@@ -64,9 +63,7 @@ public class Recipe {
                   int commentCnt,
                   String thumbnail,
                   float star,
-                  User user,
-                  HotRecipes hotRecipes,
-                  NewRecipes newRecipes) {
+                  User user) {
         this.title = title;
         this.likeCnt = likeCnt;
         this.scrapCnt = scrapCnt;
@@ -74,7 +71,6 @@ public class Recipe {
         this.thumbnail = thumbnail;
         this.star = star;
         this.user = user;
-        this.hotRecipes = hotRecipes;
-        this.newRecipes = newRecipes;
+        this.postedDate = LocalDateTime.now();
     }
 }

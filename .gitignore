@@ -6,6 +6,8 @@ build/
 !**/src/test/**/build/
 application.yml
 application-DB-CONNECT.yml
+log/**
+log/server_log.log
 
 ### STS ###
 .apt_generated

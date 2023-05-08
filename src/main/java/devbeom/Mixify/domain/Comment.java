@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -16,7 +18,9 @@ public class Comment {
     private Long id;
 
     private String content;
-    private float comment_star;
+
+    @Column(name = "comment_star")
+    private float commentStar;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -26,11 +30,16 @@ public class Comment {
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
+    @Column(name = "commented_date")
+    private LocalDateTime commentedDate;
+
     @Builder
-    public Comment(String content, float comment_star, User user, Recipe recipe) {
+    public Comment(String content, float commentStar, User user, Recipe recipe) {
         this.content = content;
-        this.comment_star = comment_star;
+        this.commentStar = commentStar;
         this.user = user;
         this.recipe = recipe;
+
+        this.commentedDate = LocalDateTime.now();
     }
 }
