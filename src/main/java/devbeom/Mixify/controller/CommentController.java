@@ -22,7 +22,7 @@ public class CommentController {
     private final RecipeService recipeService;
 
     @PostMapping("/create/comment")
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<Void> createComment(@Valid @RequestBody CommentCreateReqDTO commentCreateReqDTO) {
         User user = userService.getUserById(commentCreateReqDTO.getUserId());
         Recipe recipe = recipeService.getRecipeById(commentCreateReqDTO.getRecipeId());
