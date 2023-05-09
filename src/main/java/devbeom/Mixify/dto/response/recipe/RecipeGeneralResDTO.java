@@ -33,9 +33,11 @@ public class RecipeGeneralResDTO {
         recipeId = recipe.getId();
         title = recipe.getTitle();
         thumbnail = recipe.getThumbnail();
+
         likeCnt = recipe.getLikeCnt();
         scrapCnt = recipe.getScrapCnt();
         commentCnt = recipe.getCommentCnt();
+
         star = recipe.getStar();
 
         steps = recipe.getSteps().stream()
