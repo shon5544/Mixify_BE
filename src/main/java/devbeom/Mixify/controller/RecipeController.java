@@ -23,13 +23,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/recipe")
 public class RecipeController {
     private final UserService userService;
     private final RecipeService recipeService;
     private final StepService stepService;
     private final IngredientService ingredientService;
 
-    @GetMapping("/get/recipe/{recipeId}")
+    @GetMapping("/get/{recipeId}")
     public ResponseEntity<RecipeGeneralResDTO> getRecipe(@PathVariable Long recipeId) {
 
         return ResponseEntity.ok()
@@ -37,7 +38,7 @@ public class RecipeController {
 
     }
 
-    @PostMapping("/create/recipe")
+    @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<Void> createRecipe(@Valid @RequestBody RecipeGeneralReqDTO recipeGeneralReqDTO) {
         Long userId = recipeGeneralReqDTO.getUserId();
