@@ -8,9 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     @Query("select i from Ingredient i where i.recipe = :recipe")
-    List<Ingredient> findAllByRecipe(@Param("recipe") Recipe recipe);
+    Optional<List<Ingredient>> findAllByRecipe(@Param("recipe") Recipe recipe);
 }

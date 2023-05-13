@@ -62,7 +62,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //해당 url에 대한 요청은 인증없이 접근을 허용하겠다는 뜻
-                .requestMatchers("/api/signup", "/auth/authenticate", "/get/**").permitAll()
+                .requestMatchers("/signup", "/auth/authenticate").permitAll()
+                .requestMatchers("/recipe/get/**").permitAll()
 //                .requestMatchers(request -> request
 //                        .mvcMatchers("/api/signup", "/auth/authenticate", "/get/recipe/**")
 //                        .permitAll()

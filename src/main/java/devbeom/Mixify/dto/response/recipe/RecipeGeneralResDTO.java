@@ -40,7 +40,7 @@ public class RecipeGeneralResDTO {
 
         star = recipe.getStar();
 
-        steps = recipe.getSteps().stream()
+        steps = recipe.getStepList().stream()
                 .map(StepGeneralResDTO::new)
                 .collect(Collectors.toList());
 

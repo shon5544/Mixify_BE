@@ -46,7 +46,7 @@ public class RecipeController {
 
         Recipe recipe = recipeService.createRecipe(recipeGeneralReqDTO.toEntity(user));
 
-        List<Step> steps = recipeGeneralReqDTO.getSteps().stream()
+        List<Step> steps = recipeGeneralReqDTO.getStepList().stream()
                 .map(stepGeneralReqDTO -> stepGeneralReqDTO.toEntity(recipe))
                 .collect(Collectors.toList());
 
@@ -56,6 +56,16 @@ public class RecipeController {
 
         stepService.createSteps(steps);
         ingredientService.createIngredients(ingredients);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/edit")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public ResponseEntity<Void> editRecipe(@Valid @RequestBody RecipeGeneralReqDTO recipeGeneralReqDTO,
+                                           @RequestParam(name = "r") Long recipeId) {
+
+        Recipe recipe = recipeService.editRecipe(recipeGeneralReqDTO, recipeId);
 
         return ResponseEntity.ok().build();
     }

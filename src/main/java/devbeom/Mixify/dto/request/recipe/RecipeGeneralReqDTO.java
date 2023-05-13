@@ -33,7 +33,7 @@ public class RecipeGeneralReqDTO {
     // DTO 받은 이후에 리스트에 있는 요소들을 엔티티로 바꾼 후 일일히 저장해주는 로직 필요.
     @NotNull(message = "레시피의 단계는 누락되어선 안 됩니다.")
     @Size(min = 1, message = "레시피의 단계는 적어도 한 개 이상이어야 합니다.")
-    private List<StepGeneralReqDTO> steps;
+    private List<StepGeneralReqDTO> stepList;
 
     // 프론트 개발 편의성을 위해 연관관계 주인을 여기서 받음
     // DTO 받은 이후에 리스트에 있는 요소들을 엔티티로 바꾼 후 일일히 저장해주는 로직 필요.

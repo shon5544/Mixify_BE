@@ -1,10 +1,7 @@
 package devbeom.Mixify.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -15,7 +12,10 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private String name;
+
+    @Setter
     private String quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
