@@ -10,6 +10,7 @@ import devbeom.Mixify.repository.RecipeRepository;
 import devbeom.Mixify.repository.StepRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
@@ -45,11 +47,15 @@ public class RecipeService {
                 .collect(Collectors.toList());
         ingredientRepository.saveAll(ingredientList);
 
+        log.info("ingredientList 저장 끝남");
+
         // step 재등록
         List<Step> stepList = recipeFromDTO.getStepList().stream()
                 .map(stepGeneralReqDTO -> stepGeneralReqDTO.toEntity(recipe))
                 .collect(Collectors.toList());
         stepRepository.saveAll(stepList);
+
+        log.info("stepLIst 저장 끝남");
 
         return recipe;
     }
