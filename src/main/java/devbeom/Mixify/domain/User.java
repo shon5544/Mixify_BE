@@ -11,7 +11,12 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "Users")
+@Table(name = "Users", uniqueConstraints = {
+        @UniqueConstraint(name = "user_uk", columnNames = {
+                "user_id",
+                "username"
+        })
+})
 public class User {
 
     @Id
