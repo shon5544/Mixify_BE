@@ -10,10 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,7 +20,7 @@ public class CommentController {
     private final UserService userService;
     private final RecipeService recipeService;
 
-    @PostMapping("/comment")
+    @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<Void> createComment(@Valid @RequestBody CommentCreateReqDTO commentCreateReqDTO) {
         User user = userService.getUserById(commentCreateReqDTO.getUserId());
