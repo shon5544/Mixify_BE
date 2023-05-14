@@ -12,4 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // 현재 다대다 매핑 관계 상태. 나중에 수정할 것.
     @EntityGraph(attributePaths = "authorities")
     Optional<User> findOneWithAuthoritiesByUserId(String userId);
+
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByUserId(String userId);
 }
