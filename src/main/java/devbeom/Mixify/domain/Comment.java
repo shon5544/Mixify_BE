@@ -1,10 +1,7 @@
 package devbeom.Mixify.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -33,6 +30,9 @@ public class Comment {
     @Column(name = "commented_date")
     private LocalDateTime commentedDate;
 
+    @Column(name = "is_edited")
+    private boolean isEdited;
+
     @Builder
     public Comment(String content, float commentStar, User user, Recipe recipe) {
         this.content = content;
@@ -41,5 +41,18 @@ public class Comment {
         this.recipe = recipe;
 
         this.commentedDate = LocalDateTime.now();
+        this.isEdited = false;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+        this.commentedDate = LocalDateTime.now();
+        this.isEdited = true;
+    }
+
+    public void setCommentStar(float commentStar) {
+        this.commentStar = commentStar;
+        this.commentedDate = LocalDateTime.now();
+        this.isEdited = true;
     }
 }
