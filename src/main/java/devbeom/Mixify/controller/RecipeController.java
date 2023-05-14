@@ -3,13 +3,11 @@ package devbeom.Mixify.controller;
 import devbeom.Mixify.domain.Ingredient;
 import devbeom.Mixify.domain.Recipe;
 import devbeom.Mixify.domain.Step;
-import devbeom.Mixify.domain.User;
 import devbeom.Mixify.dto.request.recipe.RecipeGeneralReqDTO;
 import devbeom.Mixify.dto.response.recipe.RecipeGeneralResDTO;
 import devbeom.Mixify.service.IngredientService;
 import devbeom.Mixify.service.RecipeService;
 import devbeom.Mixify.service.StepService;
-import devbeom.Mixify.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +23,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/recipe")
 public class RecipeController {
-    private final UserService userService;
     private final RecipeService recipeService;
     private final StepService stepService;
     private final IngredientService ingredientService;
@@ -41,10 +38,8 @@ public class RecipeController {
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<Void> createRecipe(@Valid @RequestBody RecipeGeneralReqDTO recipeGeneralReqDTO) {
-        Long userId = recipeGeneralReqDTO.getUserId();
-        User user = userService.getUserById(userId);
 
-        Recipe recipe = recipeService.createRecipe(recipeGeneralReqDTO.toEntity(user));
+        Recipe recipe = recipeService.createRecipe(recipeGeneralReqDTO);
 
         List<Step> steps = recipeGeneralReqDTO.getStepList().stream()
                 .map(stepGeneralReqDTO -> stepGeneralReqDTO.toEntity(recipe))
