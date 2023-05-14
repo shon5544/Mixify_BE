@@ -8,12 +8,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
 @Getter
-public class CommentCreateReqDTO {
+public class CommentReqDTO {
     @NotBlank
     @Size(max = 250)
     private String content;
 
-    private Long userId;
+    private String userId;
 
     private Long recipeId;
     
