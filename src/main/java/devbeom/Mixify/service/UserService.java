@@ -28,6 +28,11 @@ public class UserService {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
+//    public User getUserByUsername(String username) {
+//        return userRepository.findByUsername(username)
+//                .orElseThrow(EntityNotFoundException::new);
+//    }
+
     @Transactional
     public UserJwtDTO signup(UserJwtDTO userDto) {
         if (userRepository.findOneWithAuthoritiesByUserId(userDto.getUsername()).orElse(null) != null) {
@@ -57,7 +62,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserJwtDTO getMyUserWithAuthorities() {
         return UserJwtDTO.from(
-                SecurityUtil.getCurrentUsername()
+                SecurityUtil.getCurrentUserId()
                         .flatMap(userRepository::findOneWithAuthoritiesByUserId)
                         .orElseThrow(() -> new NotFoundMemberException("Member not found"))
         );
