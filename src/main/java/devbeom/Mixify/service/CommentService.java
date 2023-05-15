@@ -24,30 +24,28 @@ public class CommentService {
     @Transactional
     public Comment createComment(CommentReqDTO commentReqDTO) {
         String currentUserId = SecurityUtil.getCurrentUserId().orElseThrow(() -> new IllegalStateException("인증된 토큰이 없음."));
-        String commentAuthorId = commentReqDTO.getUserId();
 
-        if(currentUserId.equals(commentAuthorId)) {
-            User user = userRepository.findByUserId(commentAuthorId)
-                    .orElseThrow(() -> new EntityNotFoundException("user 엔티티를 찾을 수 없음: CommentService.createComment"));
-            Recipe recipe = recipeRepository.findById(commentReqDTO.getRecipeId())
-                    .orElseThrow(() -> new EntityNotFoundException("recipe 엔티티를 찾을 수 없음: CommentService.createComment"));
+        User user = userRepository.findByUserId(currentUserId)
+                .orElseThrow(() -> new EntityNotFoundException("user 엔티티를 찾을 수 없음: CommentService.createComment"));
 
-            Comment comment = commentReqDTO.toEntity(user, recipe);
-            return commentRepository.save(comment);
-        } else {
-            throw new IllegalStateException("다른 유저의 명의로 댓글 작성 시도 감지. 잘못된 접근을 시도한 유저 ID: " + currentUserId);
-        }
+        Recipe recipe = recipeRepository.findById(commentReqDTO.getRecipeId())
+                .orElseThrow(() -> new EntityNotFoundException("recipe 엔티티를 찾을 수 없음: CommentService.createComment"));
+
+        Comment comment = commentReqDTO.toEntity(user, recipe);
+
+        return commentRepository.save(comment);
     }
 
     @Transactional
     public void editComment(CommentReqDTO commentReqDTO, Long commentId) {
+        Comment comment = commentRepository.findById(commentId).orElseThrow(EntityNotFoundException::new);
+
         String currentUsername = SecurityUtil.getCurrentUserId()
                 .orElseThrow(() -> new IllegalStateException("인증된 토큰 없음."));
-        String commentAuthor = commentReqDTO.getUserId();
+        String commentAuthor = comment.getUser().getUserId();
 
-        Comment comment = commentRepository.findById(commentId).orElseThrow(EntityNotFoundException::new);;
 
-        if(currentUsername.equals(commentAuthor) && comment.getUser().getUserId().equals(commentAuthor)) {
+        if(currentUsername.equals(commentAuthor)) {
             comment.setContent(commentReqDTO.getContent());
             comment.setCommentStar(commentReqDTO.getCommentStar());
         } else {

@@ -13,8 +13,6 @@ public class CommentReqDTO {
     @Size(max = 250)
     private String content;
 
-    private String userId;
-
     private Long recipeId;
     
     // 유저가 레시피에 주는 별점
