@@ -29,9 +29,10 @@ public class RecipeController {
 
     @GetMapping("/get/{recipeId}")
     public ResponseEntity<RecipeGeneralResDTO> getRecipe(@PathVariable Long recipeId) {
+        RecipeGeneralResDTO recipeGeneralResDTO = new RecipeGeneralResDTO(recipeService.getRecipeById(recipeId));
 
         return ResponseEntity.ok()
-                        .body(recipeService.getRecipeResById(recipeId));
+                        .body(recipeGeneralResDTO);
 
     }
 

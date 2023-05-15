@@ -5,7 +5,6 @@ import devbeom.Mixify.domain.Recipe;
 import devbeom.Mixify.domain.Step;
 import devbeom.Mixify.domain.User;
 import devbeom.Mixify.dto.request.recipe.RecipeGeneralReqDTO;
-import devbeom.Mixify.dto.response.recipe.RecipeGeneralResDTO;
 import devbeom.Mixify.jwt.utils.SecurityUtil;
 import devbeom.Mixify.repository.IngredientRepository;
 import devbeom.Mixify.repository.RecipeRepository;
@@ -96,12 +95,6 @@ public class RecipeService {
         } else {
             throw new RuntimeException("다른 유저의 댓글에 대한 수정 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUserId);
         }
-    }
-
-    public RecipeGeneralResDTO getRecipeResById(Long recipeId) {
-        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
-
-        return new RecipeGeneralResDTO(recipe);
     }
 
     public Recipe getRecipeById(Long recipeId) {
