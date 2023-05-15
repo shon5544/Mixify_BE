@@ -64,4 +64,11 @@ public class RecipeController {
 
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteRecipe(@RequestParam(name = "r") Long recipeId) {
+        recipeService.deleteRecipe(recipeId);
+
+        return ResponseEntity.ok().build();
+    }
 }

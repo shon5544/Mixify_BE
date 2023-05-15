@@ -77,7 +77,24 @@ public class RecipeService {
 
             return recipe;
         } else {
-            throw new IllegalStateException("다른 유저의 댓글에 대한 수정 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUserId);
+            throw new RuntimeException("다른 유저의 댓글에 대한 수정 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUserId);
+        }
+    }
+
+    @Transactional
+    public void deleteRecipe(Long recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new EntityNotFoundException("엔티티를 찾을 수 없음: RecipeService.deleteRecipe"));
+
+        String currentUserId = SecurityUtil.getCurrentUserId()
+                .orElseThrow(() -> new IllegalStateException("인증된 토큰 없음."));
+        String recipeAuthor = recipe.getUser().getUserId();
+
+        if(currentUserId.equals(recipeAuthor)) {
+            recipeRepository.delete(recipe);
+            log.info("id: " + recipeId + " recipe 삭제됨");
+        } else {
+            throw new RuntimeException("다른 유저의 댓글에 대한 수정 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUserId);
         }
     }
 
