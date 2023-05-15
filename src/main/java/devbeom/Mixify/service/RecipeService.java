@@ -34,33 +34,28 @@ public class RecipeService {
     public Recipe createRecipe(RecipeGeneralReqDTO recipeGeneralReqDTO) {
         String currentUserId = SecurityUtil.getCurrentUserId()
                 .orElseThrow(() -> new IllegalStateException("인증된 토큰이 없습니다."));
-        String recipeAuthorId = recipeGeneralReqDTO.getUserId();
 
-        if(currentUserId.equals(recipeAuthorId)){
-            User user = userRepository.findByUserId(recipeAuthorId).orElseThrow(EntityNotFoundException::new);
-            Recipe recipe = recipeGeneralReqDTO.toEntity(user);
+        User user = userRepository.findByUserId(currentUserId).orElseThrow(EntityNotFoundException::new);
+        Recipe recipe = recipeGeneralReqDTO.toEntity(user);
 
-            return recipeRepository.save(recipe);
-        } else {
-            throw new IllegalStateException("다른 유저의 명의로 게시글 작성하려는 움직임 감지. 잘못된 접근을 시도한 유저 ID: "
-                    + currentUserId);
-        }
-
-
+        return recipeRepository.save(recipe);
     }
 
     @Transactional
     public Recipe editRecipe(RecipeGeneralReqDTO recipeFromDTO, Long recipeId) {
         String currentUserId = SecurityUtil.getCurrentUserId()
                 .orElseThrow(() -> new IllegalStateException("인증받은 토큰이 없습니다."));
-        String recipeAuthorId = recipeFromDTO.getUserId();
 
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(EntityNotFoundException::new);
+        String recipeAuthorId = recipe.getUser().getUserId();
 
-        if(currentUserId.equals(recipeAuthorId) && recipe.getUser().getUserId().equals(recipeAuthorId)) {
+        if(currentUserId.equals(recipeAuthorId)) {
             // recipe 객체 세팅
             recipe.setTitle(recipeFromDTO.getTitle());
             recipe.setThumbnail(recipeFromDTO.getThumbnail());
+
+            // IngredientList, StepList가 지연로딩으로 잡혀있기 때문에 get하는 시점에서 쿼리 발생.
+            // 컬렉션 페치 조인은 하지 않는다. 성능과부화와 차후 페이징기능을 고려하고 있기 때문.
             recipe.getIngredientList().clear(); // 재료 삭제. ingredient에 orphanRemoval 적용되어있음.
             recipe.getStepList().clear(); // 단계 삭제. step에 orphanRemoval 적용되어있음.
 

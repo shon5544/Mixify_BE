@@ -25,9 +25,9 @@ public class RecipeGeneralReqDTO {
     private String thumbnail;
 
     // 아무래도 해당 클래스의 toEntity 메서드에 의존하는 것보단 직접 User를 가져와서 꽂아주는 게 제일 안전할 듯.
-//    private UserGeneralReqDTO user;
-    @NotNull(message = "userId에 대한 정보가 없습니다.")
-    private String userId;
+    //    private UserGeneralReqDTO user;
+    //@NotNull(message = "userId에 대한 정보가 없습니다.")
+    //private String userId;
 
     // 프론트 개발 편의성을 위해 연관관계 주인을 여기서 받음
     // DTO 받은 이후에 리스트에 있는 요소들을 엔티티로 바꾼 후 일일히 저장해주는 로직 필요.
