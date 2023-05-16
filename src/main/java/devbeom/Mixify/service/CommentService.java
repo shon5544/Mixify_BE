@@ -10,12 +10,14 @@ import devbeom.Mixify.repository.RecipeRepository;
 import devbeom.Mixify.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
@@ -52,5 +54,21 @@ public class CommentService {
             throw new IllegalStateException("다른 유저의 댓글에 대한 수정 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUsername);
         }
 
+    }
+
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new EntityNotFoundException("comment 엔티티를 찾을 수 없음: CommentService.deleteComment"));
+
+        String currentUserId = SecurityUtil.getCurrentUserId()
+                .orElseThrow(() -> new IllegalStateException("인증된 토큰 없음."));
+        String commentAuthorId = comment.getUser().getUserId();
+
+        if(currentUserId.equals(commentAuthorId)) {
+            commentRepository.delete(comment);
+            log.info("댓글 삭제 완료.");
+        } else {
+            throw new RuntimeException("다른 유저의 댓글에 대한 삭제 감지. 잘못된 접근을 시도하는 유저 ID: " + currentUserId);
+        }
     }
 }
