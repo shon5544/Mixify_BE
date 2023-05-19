@@ -20,9 +20,6 @@ public class Recipe {
     @Setter
     private String title;
 
-    @Column(name = "like_cnt")
-    private int likeCnt;
-
     @Column(name = "scrap_cnt")
     private int scrapCnt;
 
@@ -58,14 +55,12 @@ public class Recipe {
 
     @Builder
     public Recipe(String title,
-                  int likeCnt,
                   int scrapCnt,
                   int commentCnt,
                   String thumbnail,
                   float star,
                   User user) {
         this.title = title;
-        this.likeCnt = likeCnt;
         this.scrapCnt = scrapCnt;
         this.commentCnt = commentCnt;
         this.thumbnail = thumbnail;
